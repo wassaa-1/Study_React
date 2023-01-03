@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <button class="btn increase" id="button">increase plz</button>
+    <!-- 
+        초기값: <p>0</p> 
+        버튼 클릭 시: <p>1</p>로 새로운 p 엘리먼트로 대체
+    -->
+    <script>
+        const root = document.getElementById('root');
+        const button = document.getElementById('button');
+
+        let count = 0;
+        root.innerHTML = `<p>0</p>`;
+
+        button.addEventListener('click', () => root.innerHTML = `<p>${++count}</p>`);
+
+    </script>
+</body>
+
+</html>

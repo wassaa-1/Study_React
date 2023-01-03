@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <button id="button">increase</button>
+
+    <script>
+        // console.log(React); // React의 최상위 API, React 라이브러리의 진입점
+        // console.log(ReactDOM); // React로 생성한 컴포넌트(Component)를 브라우저(Real DOM)에게 전달해주는 역할
+
+        // const component = React.createElement('div', null, 'div입니다.');
+        // console.log(component);
+        // ReactDOM.render(component, document.getElementById('root'));
+
+        // <p>count값</p>를 반환하는 함수형 컴포넌트
+        // -> React에서 제공하는 컴포넌트가 아닌, 개발자가 직접 만든 컴포넌트를 커스텀(Custom) 컴포넌트
+        // -> 커스텀 컴포넌트는 일반적으로 대문자로 시작, <img/>, <div>와 같은 일반 엘리먼트들과 구분짓기 위해
+        const Component = props => {
+            return React.createElement('p', null, `${props.count}`);
+        }
+
+        // 초기 랜더링(처음 브라우저가 동작할 때)
+        ReactDOM.render(React.createElement(Component, { count: 0 }, null), document.getElementById('root'));
+
+        let i = 0;
+        // 이벤트 발생에 따라 화면을 다시 랜더링
+        document.getElementById('button').addEventListener('click', () => {
+            ReactDOM.render(React.createElement(Component, { count: ++i }, null), document.getElementById('root'))
+        })
+    </script>
+</body>
+
+</html>
