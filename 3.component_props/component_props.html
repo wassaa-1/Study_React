@@ -16,49 +16,51 @@
 
     <script type="text/babel">
 
+
         // 일반 JS 객체
-        const comment = {
+        const comment = { // comment: 댓글
             date: new Date().toLocaleDateString(),
             text: 'I hope you enjoy learning React!',
             author: {
-                name: 'hello kitty',
-                avatarUrl: 'http://placekitten.com/g/64/64',
-
+                name: 'Hello kitty',
+                avatarUrl: 'http://placekitten.com/g/64/64'
             }
         }
 
+        // Comment라는 이름의 함수형 컴포넌트 작성
         const Comment = props => {
+            // console.log(props.author);
             return (
-                <div className="Comment">
-                    <Avatar user={props.author} />
+                <div className='Comment'>
                     <UserInfo user={props.author} />
-                    <div className="Comment-text">{props.text}</div>
-                    <div className="Comment-date">{props.date}</div>
+                    <div className='Comment-text'>{props.text}</div>
+                    <div className='Comment-date'>{props.date}</div>
                 </div>
             )
         }
 
         const UserInfo = props => {
+            // console.log(props.user);
             return (
-                <div className="UserInfo">
-                    <div className="UserInfo-name">{props.user.name}</div>
+                <div className='UserInfo'>
+                    <Avatar {...props.user} />
+                    <div className='UserInfo-name'>{name}</div>
                 </div>
             )
         }
 
-        const Avatar = props => {
-            return (
-                <div className="UserImage">
-                    <img src={props.user.avatarUrl} alt="profile image" />
-                </div>
-            )
+        // Avatar라는 이름의 컴포넌트로 <img />만 분리해서 화면은 동일하게 나오도록
+        // alt태그에는 author.name값으로 적용
+        const Avatar = ({ name, avatarUrl }) => {
+            return <img className='Avatar' src={avatarUrl} alt={name} />
         }
 
         ReactDOM.render(<Comment date={comment.date}
             text={comment.text}
             author={comment.author}
         />,
-            document.getElementById('root'));
+            document.getElementById('root')
+        );
     </script>
 </body>
 

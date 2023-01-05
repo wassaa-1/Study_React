@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        let i = 0;
+        const { useState } = React;
+        const OnOffButton = props => {
+            const [btn, setBtn] = useState('켜줘');
+            const [img, setImg] = useState('pic_bulboff.gif')
+            const fun = () => {
+                i += 1;
+                if (i % 2 == 0) {
+                    setBtn('켜줘');
+                    setImg('pic_bulboff.gif')
+                } else {
+                    setBtn('꺼줘')
+                    setImg('pic_bulbon.gif')
+                }
+            }
+
+            return (
+                <>
+                    <img src={img} alt="전구" /> <br />
+                    <button onClick={fun}>{btn}</button>
+                </>
+            )
+        }
+
+        ReactDOM.render(<OnOffButton />, document.getElementById('root'));
+    </script>
+</body>
+
+</html>

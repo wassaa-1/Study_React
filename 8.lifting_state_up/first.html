@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        const Temperature = props => {
+            const [celsius, setCelsius] = useState('')
+            const [fahrenheit, setFahrenheit] = useState('')
+
+            const toFahrenheit = event => {
+                setCelsius(event.target.value);
+                setFahrenheit(event.target.value * 1.8 + 32);
+            }
+
+            const toCelsius = event => {
+                setFahrenheit(event.target.value);
+                setCelsius((event.target.value - 32) * 5 / 9);
+            }
+
+            return (
+                <>
+                    <fieldset>
+                        <legend>섭씨 온도를 입력하세요:</legend>
+                        <input type="text" value={celsius} onChange={toFahrenheit} />
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>화씨 온도를 입력하세요:</legend>
+                        <input type="text" value={fahrenheit} onChange={toCelsius} />
+                    </fieldset>
+                    {(celsius >= 100) ? <Boiled /> : <NotBoiled />}
+                </>
+            )
+
+        }
+
+        const Boiled = props => <p>물이 끓는점입니다.</p>
+        const NotBoiled = props => <p>물이 끓는점이 아닙니다.</p>
+
+        ReactDOM.render(<Temperature />, document.getElementById('root'));
+
+    </script>
+</body>
+
+</html>
